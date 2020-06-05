@@ -22,3 +22,5 @@ class SnippetForm(forms.ModelForm):
     class Meta:
         model = Snippet
         fields = ('sentence',)
+
+#un commentaire
