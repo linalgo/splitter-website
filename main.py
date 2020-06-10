@@ -20,8 +20,8 @@ if __name__ == '__main__':
     def least_square_error_derivative(theta):
         return -2 * sum((y - f(x, theta))[:, np.newaxis] * x)
 
-    def sgd(theta0, n_iterations=100, step_size=0.01, precision=0.1,
-            verbose=False):
+    def gradient_descent(theta0, n_iterations=100, step_size=0.01,
+                         precision=0.1, verbose=False):
         current_theta = theta0
         for i in range(n_iterations):
             derivative = least_square_error_derivative(current_theta)
@@ -34,7 +34,7 @@ if __name__ == '__main__':
             current_theta = next_theta
         return current_theta
     
-    theta_estimate = sgd(np.array([0, 1]), verbose=True)
+    theta_estimate = gradient_descent(np.array([0, 1]), verbose=True)
     print(f'{theta} VS {theta_estimate}')
 
 
