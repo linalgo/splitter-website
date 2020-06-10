@@ -11,13 +11,15 @@ if __name__ == '__main__':
     y = x.dot(theta) + np.random.normal(0, 0.2, n)
 
 
+    def f(x, theta):
+        return x.dot(theta)
+
     def least_square_error(theta):
         return sum((y - x.dot(theta))**2)
 
-
     def least_square_error_derivative(theta):
-        return -2 * sum((y - x.dot(theta))[:, np.newaxis] * x)
-    
+        return -2 * sum((y - f(x, theta))[:, np.newaxis] * x)
+
     def sgd(theta0, n_iterations=100, step_size=0.01, precision=0.1,
             verbose=False):
         current_theta = theta0
