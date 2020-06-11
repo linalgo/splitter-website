@@ -5,23 +5,25 @@ import matplotlib.pyplot as plt
 if __name__ == '__main__':
 
     n = 1000
-    theta = np.array([0, 0])
+    theta = np.array([1, -0.5])
     x = np.random.uniform(0, 1, (n, 2))
     x[:, 1] = 1
     y = x.dot(theta) + np.random.normal(0, 0.2, n)
 
-
+# f computes x times theta
     def f(x, theta):
         return x.dot(theta)
 
+# computes the MRS of y and x
     def least_square_error(theta):
-        return sum((y - x.dot(theta))**2)
+        return sum((y - x.dot(theta))**2) / n
 
+# computes the derivative of the MRS
     def least_square_error_derivative(theta):
-        return -2 * sum((y - f(x, theta))[:, np.newaxis] * x)
+        return -2 * sum((y - f(x, theta))[:, np.newaxis] * x) / n
 
-    def gradient_descent(theta0, n_iterations=100, step_size=0.01,
-                         precision=0.1, verbose=False):
+    def gradient_descent(theta0, n_iterations=100, step_size=0.0001,
+                         precision=0, verbose=False):
         current_theta = theta0
         for i in range(n_iterations):
             derivative = least_square_error_derivative(current_theta)
