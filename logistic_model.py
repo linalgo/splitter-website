@@ -3,15 +3,13 @@ import matplotlib.pyplot as plt
 from math import *
 from time import time
 import nltk
-from nltk.corpus import brown
-from nltk.corpus import opinion_lexicon
 
 
 # opinion_lexicon : dataset where each word appears only once
 
-def create_dico():
-    wordlist = brown.words()
-    # wordlist = opinion_lexicon.words()
+def word_frequencies_dictionary():
+    wordlist = nltk.corpus.brown.words()
+    # wordlist = nltk.corpus.opinion_lexicon.words()
     dico = {}
     for word in wordlist:
         if word in dico.keys():
@@ -45,7 +43,7 @@ def generate_random_dataset(n, alpha, beta):
 
 
 def generate_dataset(alpha, beta):
-    dict_frequencies = create_dico()
+    dict_frequencies = word_frequencies_dictionary()
     n = len(dict_frequencies)
 
     dataset = np.array([(0., 0.)] * n)
