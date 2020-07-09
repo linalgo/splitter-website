@@ -10,6 +10,7 @@ def create_dico():
     # wordlist = opinion_lexicon.words()
     dico = {}
     for word in wordlist:
+        word = word.lower()
         if word in dico.keys():
             dico[word] += 1
         else:
@@ -18,8 +19,10 @@ def create_dico():
     frequencies = {}
     for word in dico.keys():
         frequencies[word] = dico[word] * 100 / total
+    return(dico)
 
 
 #print(total)
 #print(frequencies)
-# print(frequencies['the'])
+dictionnaire = create_dico()
+print(dictionnaire["the"])
